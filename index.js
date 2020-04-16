@@ -35,10 +35,9 @@ function addNumbers(num1, num2) {
  * the returned value should look like: 'Goodbye, Andy. Have a great day.'
  * 
 */
-function sayGoodbye(/* code here */) {
-  /* code here */
+function sayGoodbye(name) {
+  return "Goodbye, " + String(name) + ". Have a great day."
 }
-
 /**
  * ### Challenge `temperatureCtoF`
  * 
@@ -53,10 +52,9 @@ function sayGoodbye(/* code here */) {
  * Hint 1: The formula for converting celsius to fahrenheit is t*9/5 + 32 where t is the temperature in celsius.
  * Hint 2: There is a very easy way to round numbers in JS. Do a google search to find out how. 
 */
-function temperatureCtoF(/* code here */) {
-  /* code here */
+function temperatureCtoF(celsius) {
+  return Math.round((celsius/5)*9+32)
 }
-
 /**
  * ### Challenge `temperatureInF`
  * 
@@ -74,11 +72,15 @@ function temperatureCtoF(/* code here */) {
  * 
  * Hint: You can call your `temperatureCtoF` function from inside `temperatureInF`.
 */
-function temperatureInF(/* code here */) {
+function temperatureInF(value, char) {
   /* code here */
+  if (char === 'C'){
+    return String(Math.round((value/5)*9+32)) + "F";
+  }
+  else{
+    return String(value) + "F";
+  }
 }
-
-
 /**
  * ### Challenge `makePersonObject`
  * 
@@ -95,10 +97,13 @@ function temperatureInF(/* code here */) {
  *   email: "leia@leia.com",
  * }
 */
-function makePersonObject(/* code here */) {
-  /* code here */
+function makePersonObject(id, name, email) {
+  let obj = {};
+  obj.id = id;
+  obj.name = name;
+  obj.email = email;
+  return obj;
 }
-
 /**
  * ### Challenge `getName`
  * 
@@ -112,11 +117,7 @@ function makePersonObject(/* code here */) {
  * passing { id: 1, name: 'Leia', email: 'leia@leia.com` } as the argument,
  * the returned value should look like `Hello, my name is Leia`.
 */
-function getName(/* code here */) {
-  /* code here */
-}
-
-
+function getName(obj) {return `Hello, my name is ${obj.name}.`}
 /**
  * ### Challenge `appleIndex`
  * 
@@ -132,10 +133,13 @@ function getName(/* code here */) {
  * passing in [ 'orange', 'grape', 'apple', 'banana', 'mango' ] as the argument,
  * the returned value should be: 2.
 */
-function appleIndex(/* code here */) {
-  /* code here */
+function appleIndex(arr) {
+  let i = arr.length;
+  for (i>0; i--;){
+    if (arr[i] === 'apple'){
+      return i}; 
+  }
 }
-
 /**
  * ### Challenge `isItAnApple`
  * 
@@ -151,12 +155,12 @@ function appleIndex(/* code here */) {
  * passing in [ 'orange', 'apple', 'banana', 'apples', 'apple', 'mango' ] as the argument,
  * the returned value should be: [ false, true, false, false, true, false ].
 */
-function isItAnApple(/* code here */) {
-  /* code here */
+function isItAnApple(arr) {
+  let i = arr.length;
+  for (i>0; i--;){
+    (arr[i] === 'apple') ? arr[i] = true : arr[i] = false ;
+  }  return arr;
 }
-
-
-
 /*
 // ⭐️ Example Test Data ⭐️
 
@@ -189,14 +193,11 @@ var inventory = [
 **/
 function get3rdCar(inventory) {
   const the3rd = inventory[2];
-  return `The is a ${the3rd.car_make} ${the3rd.car_model}`
+  return `This is a ${the3rd.car_make} ${the3rd.car_model}`
 }
-
 // 👇 COMPLETE YOUR WORK BELOW 👇
 // 👇 COMPLETE YOUR WORK BELOW 👇
 // 👇 COMPLETE YOUR WORK BELOW 👇
-
-
 /**
  * ### Challenge `getCarInfoByIndex`
  * 
@@ -209,10 +210,10 @@ function get3rdCar(inventory) {
  * For example, if getCarInfoByIndex is invoked with the inventory and the number 0,
  * it will return `This is a Lincoln Navigator`.
 */
-function getCarInfoByIndex(inventory, index) {
-  /* code here */
+function getCarInfoByIndex(inv, index) {
+  const the3rd = inv[index];
+  return `This is a ${the3rd.car_make} ${the3rd.car_model}`  
 }
-
 /**
  * ### Challenge `getLastCarInfo`
  * 
@@ -224,10 +225,12 @@ function getCarInfoByIndex(inventory, index) {
  * For example, if getLastCarInfo is invoked passing the inventory inside /data/inventory.js,
  * it will return `This is a Lincoln Town Car`.
 */
-function getLastCarInfo(/* code here */) {
-  /* code here */
+function getLastCarInfo(arr) {
+  let i = arr.length;
+  for (i > 0; i--;){
+    return `This is a ${arr[i].car_make} ${arr[i].car_model}`
+  }
 }
-
 /**
  * ### Challenge `getModelYears`
  * 
@@ -237,8 +240,12 @@ function getLastCarInfo(/* code here */) {
  *     (1) an array which is an inventory of cars like the one inside /data/inventory.js.
  * getModelYears returns an array containing all the 'car_year's in the inventory.
 */
-function getModelYears(/* code here */) {
-  /* code here */
+function getModelYears(arr) {
+  let i = arr.length;
+  let newArr = [];
+  for (i>0; i--;){
+    newArr[i] = arr[i].car_year;
+  }   return newArr;
 }
 
 /**
@@ -340,3 +347,29 @@ if (typeof exports !== 'undefined') {
   if (getGermanCars) { module.exports.getGermanCars = getGermanCars }
  
 }
+
+function abc(){
+
+  let favCity = ["atlanta", "newyork", "dallas"];
+
+   favCity.unshift("miami");
+
+   console.log(favCity);
+
+
+}
+
+
+
+/*
+function getName(id, name, email) {
+  let obj = {};
+
+  obj.id = String(id);
+  obj.name = String(name);
+  obj.email = String(email);
+  obj.eat = function(){
+    return `Hello, my name is ${this.name}.`
+  }
+}
+*/
